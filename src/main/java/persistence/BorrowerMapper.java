@@ -8,6 +8,7 @@ import exceptions.DatabaseException;
 
 import javax.xml.crypto.Data;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -174,8 +175,6 @@ public class BorrowerMapper {
                 if (idResultset.next()){
                     newId = idResultset.getInt(1);
                     borrower.setId(newId);
-                } else {
-
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -186,8 +185,85 @@ public class BorrowerMapper {
             throw new DatabaseException("Could not establish connection to database");
         }
         return result;
+    }
+
+    // DML Opgave 2: Opret et nyt udlån af en bog (insert)
+    public boolean insertLoan(Borrower borrower, Book book) throws DatabaseException{
+        boolean result = false;
+        String sql = "insert into udlaan  (bog_id, laaner_id, dato) values (?,?,?)";
+
+        try (Connection connection = connector.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS )) {
+                ps.setInt(1, book.getId());
+                ps.setInt(2, borrower.getId());
+                ps.setDate(3, Date.valueOf(LocalDate.now()));
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1){
+                    result = true;
+                } else {
+                    throw new DatabaseException("The loan could not be inserted");
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                throw new DatabaseException("Could not insert member in database");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DatabaseException("Could not establish connection to database");
+        }
+        return result;
+    }
+
+    public boolean deleteLoan(Borrower borrower, Book book) throws DatabaseException{
+        String sql = "DELETE FROM udlaan WHERE laaner_id = ? AND bog_id = ?;";
+        try (Connection connection = connector.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, borrower.getId());
+                ps.setInt(2, book.getId());
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (SQLException throwables) {
+                throw new DatabaseException("Could not delete loan for the borrowner " + borrower.getName() + " and the book " + book.getTitel() + " in database");
+            }
+        } catch (SQLException throwables) {
+            throw new DatabaseException("Could not establish connection to database");
+        }
 
     }
+
+
+    // Slet en låner
+    public boolean deleteBorrower(int borrowerId) throws DatabaseException{
+        boolean result = false;
+
+        String sql = "DELETE FROM udlaan WHERE laaner_id = ?;\n" +
+                "DELETE FROM laaner WHERE laaner_id = ?;";
+        try (Connection connection = connector.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, borrowerId);
+                ps.setInt(2, borrowerId);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1){
+                    result = true;
+                } else {
+                    return false;
+                }
+            } catch (SQLException throwables) {
+                throw new DatabaseException("Could not delete borrower with id = " + borrowerId + " in database");
+            }
+        } catch (SQLException throwables) {
+            throw new DatabaseException("Could not establish connection to database");
+        }
+        return result;
+    }
+
+
 
     private int getZip(String address){
         // Regex for at finde et firecifret tal (postnummer)

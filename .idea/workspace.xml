@@ -7,7 +7,7 @@
     <list default="true" id="08312baa-30c2-458d-b742-09069b26a0d1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Borrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Borrower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/BookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/BookMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistence/BorrowerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/BorrowerMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +156,8 @@
       <workItem from="1740399438884" duration="6002000" />
       <workItem from="1740470084980" duration="4000000" />
       <workItem from="1740505949474" duration="1426000" />
-      <workItem from="1740556675058" duration="7157000" />
+      <workItem from="1740556675058" duration="8919000" />
+      <workItem from="1740574080139" duration="2636000" />
     </task>
     <servers />
   </component>

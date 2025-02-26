@@ -51,4 +51,32 @@ public class BookMapper {
 
     }
 
+    // DML Opgave 4: Rediger en bogtitel (update)
+
+    public boolean updateBookTitle(int id, String newTitle) throws DatabaseException{
+        String sql = "UPDATE bog SET titel = ? WHERE bog_id = ?;";
+        try (Connection connection = connector.getConnection())
+        {
+            try (PreparedStatement prepareStatement = connection.prepareStatement(sql))
+            {
+                prepareStatement.setString(1, newTitle);
+                prepareStatement.setInt(2, id);
+                int rowsAffected = prepareStatement.executeUpdate();
+                if (rowsAffected == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (SQLException throwables) {
+                throw new DatabaseException("Could not update book with id " + id + " in database");
+            }
+
+        }
+        catch (SQLException e)
+        {
+            throw new DatabaseException("Could not get users from the database", e);
+        }
+
+    }
+
 }

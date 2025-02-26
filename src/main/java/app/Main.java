@@ -1,6 +1,7 @@
 package app;
 
 import dto.AuthorAndBorrowersDTO;
+import entities.Author;
 import entities.Book;
 import entities.Borrower;
 import exceptions.DatabaseException;
@@ -55,13 +56,46 @@ public class Main {
             System.out.println(borrowersWithBooks);*/
 
             // DML Opgave 1: Indsæt en ny låner (insert)
-            Borrower borrower = new Borrower("Signe", "Gladsaxevej 157 2860 Søborg");
+            /*Borrower borrower = new Borrower("Signe", "Gladsaxevej 157 2860 Søborg");
             boolean success = borrowerMapper.insertBorrower(borrower);
             if (success)
                 System.out.println(borrower);
             else
-                System.out.println("insert failed");
+                System.out.println("insert failed");*/
 
+            // DML Opgave 2: Opret et nyt udlån af en bog (insert)
+            /*Book book = new Book(1, "Den lange rejse", 1977, new Author("Johannes V. Jensen", 2));
+            Borrower borrower = new Borrower("Mattias Bruun", "Ellevang 12 7490 Aulum", 3);
+            boolean success = borrowerMapper.insertLoan(borrower, book);
+            if (success)
+                System.out.println("insert succeded");
+            else
+                System.out.println("insert failed");*/
+
+            // DML Opgave 3: Fjern et udlån (delete)
+            /*Book book = new Book(1, "Den lange rejse", 1977, new Author("Johannes V. Jensen", 2));
+            Borrower borrower = new Borrower("Mattias Bruun", "Ellevang 12 7490 Aulum", 3);
+            boolean success = borrowerMapper.deleteLoan(borrower, book);
+            if (success)
+                System.out.println("delete succeded");
+            else
+                System.out.println("delete failed");*/
+
+            // DML Opgave 4: Rediger en bogtitel (update)
+            /*boolean success = bookMapper.updateBookTitle(2, "Sommerhistorier");
+            if (success)
+                System.out.println("update succeded");
+            else
+                System.out.println("update failed");*/
+
+            // Fjern en låner (og tilhørende udlån)
+            /*
+            boolean deleted = borrowerMapper.deleteBorrower(1);
+            if (deleted)
+                System.out.println("Borrower with id " + 1 + " is succcesfully deleted");
+            else
+                System.out.println("delete failed");
+            */
 
              // Et kald som returnere en DTO
             /*
