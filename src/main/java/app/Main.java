@@ -27,14 +27,14 @@ public class Main {
         }
     }
 
-    public static void main(String[] args)
+    public static  void main(String[] args)
     {
 
         BorrowerMapper borrowerMapper = new BorrowerMapper(databaseConnector);
         try
         {
             // Get a user by name
-            Borrower borrower = borrowerMapper.getBorrowerById(1);
+            Borrower borrower = borrowerMapper.
             System.out.println(borrower);
 
             AuthorAndBorrowersDTO authorAndBorrowersDTO = borrowerMapper.getAuthorAndBorrowersByName("Johannes V. Jensen");

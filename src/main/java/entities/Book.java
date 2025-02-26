@@ -8,18 +8,16 @@ public class Book {
     private String isbn;
     private Author author;
 
-    public Book(int id, String titel, int releaseYear, String isbn, Author author) {
+    public Book(int id, String titel, int releaseYear,  Author author) {
         this.id = id;
         this.titel = titel;
         this.releaseYear = releaseYear;
-        this.isbn = isbn;
         this.author = author;
     }
 
-    public Book(String titel, int releaseYear, String isbn, Author author) {
+    public Book(String titel, int releaseYear, Author author) {
         this.titel = titel;
         this.releaseYear = releaseYear;
-        this.isbn = isbn;
         this.author = author;
     }
 
@@ -47,13 +45,6 @@ public class Book {
         this.releaseYear = releaseYear;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 
     public Author getAuthor() {
         return author;

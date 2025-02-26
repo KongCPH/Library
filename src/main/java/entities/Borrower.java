@@ -2,6 +2,7 @@ package entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Borrower {
 
@@ -65,5 +66,18 @@ public class Borrower {
                 ", id=" + id +
                 ", books=" + books +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Borrower borrower = (Borrower) o;
+        return id == borrower.id && Objects.equals(name, borrower.name) && Objects.equals(adress, borrower.adress) && Objects.equals(books, borrower.books);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, adress, id, books);
     }
 }
