@@ -5,7 +5,7 @@ public class Book {
     private int id;
     private String titel;
     private int releaseYear;
-    private String isbn;
+
     private Author author;
 
     public Book(int id, String titel, int releaseYear,  Author author) {
@@ -52,5 +52,15 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", titel='" + titel + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", author=" + author.getName() +
+                '}';
     }
 }

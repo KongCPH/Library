@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08312baa-30c2-458d-b742-09069b26a0d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/persistence/BorrowerMapperTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/persistence/BookMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Borrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Borrower.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistence/BorrowerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/BorrowerMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +31,9 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2tLKZJI6qTSEkv5jERhzqPW0yif" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -67,7 +67,7 @@
       <recent name="persistence" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BorrowerMapperTest.testGetBorrowerById">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="library" />
@@ -130,10 +130,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.BorrowerMapperTest.testGetBorrowerById" />
         <item itemvalue="JUnit.BorrowerMapperTest" />
         <item itemvalue="JUnit.BorrowerMapperTest.testConnection" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +157,7 @@
       <workItem from="1740399438884" duration="6002000" />
       <workItem from="1740470084980" duration="4000000" />
       <workItem from="1740505949474" duration="1426000" />
-      <workItem from="1740556675058" duration="1801000" />
+      <workItem from="1740556675058" duration="3960000" />
     </task>
     <servers />
   </component>

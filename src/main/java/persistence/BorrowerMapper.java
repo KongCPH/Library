@@ -6,6 +6,7 @@ import entities.Book;
 import entities.Borrower;
 import exceptions.DatabaseException;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,6 +50,65 @@ public class BorrowerMapper {
 
     }
 
+    // Opgave 2: Find alle lånere, og vis deres data inklusive postnummer og by.
+    public List<Borrower> getAllBorrowers() throws DatabaseException {
+        String sql = "SELECT laaner.*, by FROM laaner JOIN postnummer ON laaner.postnr = postnummer.postnr";
+        try (Connection connection = connector.getConnection())
+        {
+            try (PreparedStatement prepareStatement = connection.prepareStatement(sql))
+            {
+                ResultSet resultSet = prepareStatement.executeQuery();
+
+                List<Borrower> borrowers = new ArrayList<>();
+                while (resultSet.next())
+                {
+                    int borrowerId = resultSet.getInt("laaner_id");
+                    String name = resultSet.getString("navn");
+                    String address = resultSet.getString("adresse");
+                    int zip = resultSet.getInt("postnr");
+                    String city = resultSet.getString("by");
+                    borrowers.add(new Borrower(name, address + " " + zip + " " + city, borrowerId));
+                }
+                return borrowers;
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new DatabaseException("Could not get users from the database", e);
+        }
+    }
+
+
+    // Opgave 1: Find en låner ud fra et specifikt laaner_id.
+    public Borrower getBorrowerById(int id) throws DatabaseException
+    {
+        String sql = "SELECT * FROM laaner WHERE laaner_id = ?";
+        try (Connection connection = connector.getConnection())
+        {
+            try (PreparedStatement prepareStatement = connection.prepareStatement(sql))
+            {
+                prepareStatement.setInt(1, id);
+                ResultSet resultSet = prepareStatement.executeQuery();
+
+                if (resultSet.next())
+                {
+                    String name = resultSet.getString("navn");
+                    String adresse = resultSet.getString("adresse");
+                    String zip = resultSet.getString("postnr");
+                    return new Borrower(name, adresse + " " + zip, id);
+                } else
+                {
+                    return null;
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new DatabaseException("Could not get users from the database", e);
+        }
+    }
+
+    // Opgave 1: Find en låner ud fra et specifikt laaner_id (inklusiv lånte bøger)
     public Borrower getBorrowerAndBooksById(int id) throws DatabaseException{
         String sql = "SELECT laaner.*, bog.*, forfatter.navn AS forfatter FROM laaner JOIN udlaan ON laaner.laaner_id = udlaan.laaner_id \n" +
                 "JOIN bog ON bog.bog_id = udlaan.bog_id JOIN forfatter ON forfatter.forfatter_id = bog.bog_id WHERE laaner.laaner_id = ?";
@@ -86,38 +146,6 @@ public class BorrowerMapper {
             throw new DatabaseException("Could not get users from the database", e);
         }
     }
-
-    public Borrower getBorrowerById(int id) throws DatabaseException
-    {
-        String sql = "SELECT * FROM laaner WHERE laaner_id = ?";
-
-
-
-        try (Connection connection = connector.getConnection())
-        {
-            try (PreparedStatement prepareStatement = connection.prepareStatement(sql))
-            {
-                prepareStatement.setInt(1, id);
-                ResultSet resultSet = prepareStatement.executeQuery();
-
-                if (resultSet.next())
-                {
-                    String name = resultSet.getString("navn");
-                    String adresse = resultSet.getString("adresse");
-                    String zip = resultSet.getString("postnr");
-                    return new Borrower(name, adresse + " " + zip, id);
-                } else
-                {
-                    return null;
-                }
-            }
-        }
-        catch (SQLException e)
-        {
-            throw new DatabaseException("Could not get users from the database", e);
-        }
-    }
-
 
 
 
