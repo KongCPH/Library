@@ -50,11 +50,17 @@ public class Main {
             /* List<Book> books = bookMapper.getAllBookWithAuthors();
             System.out.println(books);*/
 
+            // Opgave 4: Find alle lånere og de bøger de har lånt. Medtag også bogtitler og evt. forfatter
+            /*List<Borrower> borrowersWithBooks = borrowerMapper.getAllBorrowerAndBooks();
+            System.out.println(borrowersWithBooks);*/
 
-/*          // Et kald som returnere en DTO
+             // Et kald som returnere en DTO
+            /*
             AuthorAndBorrowersDTO authorAndBorrowersDTO = borrowerMapper.getAuthorAndBorrowersByName("Johannes V. Jensen");
             System.out.println(authorAndBorrowersDTO);
             */
+
+
 
         }
         catch (DatabaseException e)
