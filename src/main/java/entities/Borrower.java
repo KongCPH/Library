@@ -7,19 +7,19 @@ import java.util.Objects;
 public class Borrower {
 
     private String name;
-    private String adress;
+    private String address;
     private int id;
     private List<Book> books = new ArrayList<>();
 
-    public Borrower(java.lang.String name, java.lang.String adress, int id) {
+    public Borrower(String name, String address, int id) {
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.id = id;
     }
 
-    public Borrower(java.lang.String name, java.lang.String adress) {
+    public Borrower(String name, String address) {
         this.name = name;
-        this.adress = adress;
+        this.address = address;
     }
 
     public void addBook(Book book){
@@ -42,12 +42,12 @@ public class Borrower {
         this.name = name;
     }
 
-    public java.lang.String getAdress() {
-        return adress;
+    public java.lang.String getAddress() {
+        return address;
     }
 
-    public void setAdress(java.lang.String adress) {
-        this.adress = adress;
+    public void setAddress(String adress) {
+        this.address = adress;
     }
 
     public int getId() {
@@ -62,7 +62,7 @@ public class Borrower {
     public String toString() {
         return "Borrower{" +
                 "name='" + name + '\'' +
-                ", adress='" + adress + '\'' +
+                ", adress='" + address + '\'' +
                 ", id=" + id +
                 ", books=" + books +
                 '}';
@@ -73,11 +73,11 @@ public class Borrower {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Borrower borrower = (Borrower) o;
-        return id == borrower.id && Objects.equals(name, borrower.name) && Objects.equals(adress, borrower.adress) && Objects.equals(books, borrower.books);
+        return id == borrower.id && Objects.equals(name, borrower.name) && Objects.equals(address, borrower.address) && Objects.equals(books, borrower.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, adress, id, books);
+        return Objects.hash(name, address, id, books);
     }
 }

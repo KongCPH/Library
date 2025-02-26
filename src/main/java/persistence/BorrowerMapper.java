@@ -7,12 +7,11 @@ import entities.Borrower;
 import exceptions.DatabaseException;
 
 import javax.xml.crypto.Data;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BorrowerMapper {
     private DatabaseConnector connector;
@@ -151,8 +150,68 @@ public class BorrowerMapper {
         {
             throw new DatabaseException("Could not get users from the database", e);
         }
+
+
+    }
+    // DML Opgave 1: Indsæt en ny låner (insert)
+    public boolean insertBorrower(Borrower borrower) throws DatabaseException{
+        boolean result = false;
+        int newId = 0;
+        String sql = "insert into laaner (navn, adresse, postnr) values (?,?,?)";
+        try (Connection connection = connector.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS )) {
+                ps.setString(1, borrower.getName());
+                ps.setString(2, getStreetAndNo(borrower.getAddress()));
+                ps.setInt(3, getZip(borrower.getAddress()));
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1){
+                    result = true;
+                } else {
+                    throw new DatabaseException("Borrower with name = " + borrower.getName() + " could not be inserted into database");
+                }
+                ResultSet idResultset = ps.getGeneratedKeys();
+                if (idResultset.next()){
+                    newId = idResultset.getInt(1);
+                    borrower.setId(newId);
+                } else {
+
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                throw new DatabaseException("Could not insert member in database");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DatabaseException("Could not establish connection to database");
+        }
+        return result;
+
     }
 
+    private int getZip(String address){
+        // Regex for at finde et firecifret tal (postnummer)
+        Pattern pattern = Pattern.compile("\\b\\d{4}\\b");
+        Matcher matcher = pattern.matcher(address);
+
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group());
+        } else {
+            return 0;
+        }
+    }
+
+    private String getStreetAndNo(String address){
+        // Regex for at finde gade og nummer (alt før postnummer)
+        Pattern pattern = Pattern.compile("^(.*?)\\b\\d{4}\\b");
+        Matcher matcher = pattern.matcher(address);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        } else {
+            return null;
+        }
+    }
 
 
 

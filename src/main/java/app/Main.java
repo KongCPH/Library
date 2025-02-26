@@ -54,6 +54,15 @@ public class Main {
             /*List<Borrower> borrowersWithBooks = borrowerMapper.getAllBorrowerAndBooks();
             System.out.println(borrowersWithBooks);*/
 
+            // DML Opgave 1: Indsæt en ny låner (insert)
+            Borrower borrower = new Borrower("Signe", "Gladsaxevej 157 2860 Søborg");
+            boolean success = borrowerMapper.insertBorrower(borrower);
+            if (success)
+                System.out.println(borrower);
+            else
+                System.out.println("insert failed");
+
+
              // Et kald som returnere en DTO
             /*
             AuthorAndBorrowersDTO authorAndBorrowersDTO = borrowerMapper.getAuthorAndBorrowersByName("Johannes V. Jensen");
@@ -61,12 +70,11 @@ public class Main {
             */
 
 
-
         }
         catch (DatabaseException e)
         {
             System.out.println(e.getMessage());
-            System.out.println(e.getCause().getMessage());
+
         }
     }
 }
