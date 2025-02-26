@@ -40,8 +40,8 @@ public class Main {
         try
         {
             // Opgave 1: Find en låner ud fra et specifikt laaner_id.
-            /* Borrower borrower = borrowerMapper.getBorrowerById(1);
-            System.out.println(borrower); */
+            Borrower borrower = borrowerMapper.getBorrowerById(1);
+            System.out.println(borrower);
 
             // Opgave 2: Find alle lånere, og vis deres data inklusive postnummer og by.
             /* List<Borrower> borrowers = borrowerMapper.getAllBorrowers();
