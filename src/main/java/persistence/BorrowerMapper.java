@@ -22,7 +22,7 @@ public class BorrowerMapper {
     }
 
     public AuthorAndBorrowersDTO getAuthorAndBorrowersByName(String authorName) throws DatabaseException {
-        String sql = "SELECT laaner.laaner_id, laaner.navn AS laaner_navn, adresse, postnr, forfatter.forfatter_id, forfatter.navn AS forfatter_navn        FROM forfatter JOIN bog ON forfatter.forfatter_id = bog.forfatter_id\n" +
+        String sql = "SELECT laaner.laaner_id, laaner.navn AS laaner_navn, adresse, postnr, forfatter.forfatter_id, forfatter.navn AS forfatter_navn FROM forfatter JOIN bog ON forfatter.forfatter_id = bog.forfatter_id\n" +
                 "        JOIN udlaan ON bog.bog_id = udlaan.bog_id\n" +
                 "        JOIN laaner ON laaner.laaner_id = udlaan.laaner_id\n" +
                 "        WHERE forfatter.navn = ?";
